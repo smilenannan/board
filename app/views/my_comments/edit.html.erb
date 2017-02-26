@@ -1,5 +1,8 @@
 <h1>Editing My Comment</h1>
 
-<%= render 'form', my_comment: @my_comment %>
+<%= form_for @my_comment, url: my_thread_my_comment_path do |f| %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+<% end %>
 
-<%= link_to 'Back', my_comments_path %>
+<%= link_to 'Back', my_thread_path(@my_comment.my_thread_id) %>
