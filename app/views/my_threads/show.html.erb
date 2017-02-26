@@ -10,9 +10,11 @@
   <%= @my_thread.content %>
 </p>
 
-<%= link_to 'Edit', edit_my_thread_path(@my_thread) %> |
-<%= link_to 'Back', my_threads_path %>
+<%= link_to 'Edit', edit_my_thread_path(@my_thread) %> 
 
+<h2>Comments</h2>
+
+<p>
 <ul>
 <% @my_thread.my_comments.each do |my_comment| %>
 <li>
@@ -22,5 +24,7 @@
 </li>
 <% end %>
 </ul>
+</p>
 
-<%= link_to 'Comment', new_my_thread_my_comment_path(@my_thread) %> 
+<%= link_to 'New Comment', new_my_thread_my_comment_path(@my_thread) %> <br>
+<%= link_to 'Back', my_threads_path %>
