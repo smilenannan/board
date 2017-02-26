@@ -14,7 +14,7 @@ class MyCommentsController < ApplicationController
 
   # GET /my_comments/new
   def new
-    @my_comment = MyComment.new
+    @my_comment = MyComment.new(params.permit(:my_thread_id))
   end
 
   # GET /my_comments/1/edit
@@ -30,6 +30,7 @@ class MyCommentsController < ApplicationController
 
     #respond_to do |format|
       if @my_comment.save
+        p @my_comment
         redirect_to my_thread_path(@my_thread.id)
         #format.html { redirect_to @my_comment, notice: 'My comment was successfully created.' }
         #format.json { render :show, status: :created, location: @my_comment }
@@ -59,9 +60,8 @@ class MyCommentsController < ApplicationController
   def destroy
     @my_comment = MyComment.find(params[:id])
     @my_comment.destroy
-    redirect_to my_thread_path(params[:my_thread_id])
     respond_to do |format|
-      format.html { redirect_to my_comments_url, notice: 'My comment was successfully destroyed.' }
+      format.html { redirect_to my_thread_path(params[:my_thread_id]), notice: 'My comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

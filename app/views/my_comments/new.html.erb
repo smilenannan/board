@@ -1,5 +1,12 @@
 <h1>New My Comment</h1>
 
-<%= render 'form', my_comment: @my_comment %>
+<p> 
+<% p "debug" %>
+<% p @my_comment %>
+<%= form_for @my_comment, url: my_thread_my_comments_path do |f| %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+<% end %>
+</p>
 
-<%#= link_to 'Back', my_thread_path(@my_thread) %>
+<%= link_to 'Back', my_thread_path(@my_comment.my_thread_id) %>
