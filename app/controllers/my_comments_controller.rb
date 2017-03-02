@@ -1,11 +1,6 @@
 class MyCommentsController < ApplicationController
   before_action :set_my_comment, only: [:show, :edit, :update, :destroy]
 
-  # GET /my_comments
-  # GET /my_comments.json
-  def index
-    @my_comments = MyComment.all
-  end
 
   # GET /my_comments/1
   # GET /my_comments/1.json
@@ -14,7 +9,8 @@ class MyCommentsController < ApplicationController
 
   # GET /my_comments/new
   def new
-    @my_comment = MyComment.new(params.permit(:my_thread_id))
+    @my_thread = MyThread.find(params[:my_thread_id])
+    @my_comment = @my_thread.my_comments.build
   end
 
   # GET /my_comments/1/edit
