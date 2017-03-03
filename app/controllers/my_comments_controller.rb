@@ -21,7 +21,7 @@ class MyCommentsController < ApplicationController
   # POST /my_comments.json
   def create
     @my_thread = MyThread.find(params[:my_thread_id])
-    @my_comment = @my_thread.my_comments.new(my_comment_params)
+    @my_comment = @my_thread.my_comments.build(my_comment_params)
 
     respond_to do |format|
       if @my_comment.save
